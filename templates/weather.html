@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Whether Forcast</title>
+        <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+    body {
+  background-image: url('static/mount.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+</head>
+<body>
+<h1 align="center" style="color:white;"><b>Weather Report</b></h1>
+<form class ="col-md-6 col-md-offset-5" method="post" action="/weather">
+  <input type="text" name="city" placeholder="Enter city name">
+    <button>Submit</button>
+
+</form>
+<div class ="col-md-6 col-md-offset-5">
+    {% if data.status == 200 %}
+    <h1 style="font-family:jester; font-size:25px;"> <b>City</b> > <h style="color: red;"><b>{{data.City}}</b></h></h1>
+    <h1 style="font-family:jester; font-size:25px;"><b>Latitude</b> > <h style="color: brown;"><b>{{data.Latitude}}</b></h></h1>
+    <h1 style="font-family:jester; font-size:25px;"><b>Longitude</b> > <h style="color: orange;"><b>{{data.Longitude}}</b></h></h1>
+    <h1 style="font-family:jester; font-size:25px;"><b>Sunrise</b> > <h style="color: maroon;"><b>{{data.Sunrise}}</b></h></h1>
+    <h1 style="font-family:jester; font-size:25px;"><b>Sunset</b> > <h style="color: maroon;"><b>{{data.Sunset}}</b></h></h1>
+    <h1 style="font-family:jester; font-size:25px;"><b>Temperature</b> > <h style="color: green;"><b>{{data.Temperature}} <span>&#176;</span>C</b></h></h1>
+    <h1 style="font-family:jester; font-size:25px;"><b>Humidity</b> > <h style="color: blue;"><b>{{data.Humidity}}%</b></h></h1>
+    {% elif data.status == 404 %}
+    <h1 style="font-size:20px;"> <b>Please provide a valid city name as input </b></h1>
+{% endif %}
+    </div>
+<a href="/"><input type="button" value="Home"></a>
+</body>
+</html>

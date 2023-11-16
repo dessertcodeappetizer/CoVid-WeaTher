@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Covid19App</title>
+        <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+    body {
+  background-image: url('static/virus_background.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+</head>
+
+
+
+<body>
+<h1 align="center" style="font-family:geneva; font-size:250%; color:white"><b>COVID DATA</b></h1>
+<h2>
+
+</h2>
+<form class ="col-md-6 col-md-offset-5" method="post" action="/covid">
+    <input type="text" name="user_in" placeholder="Enter state code">
+    <button>Submit</button>
+</form>
+
+<div class ="col-md-6 col-md-offset-5">
+{% if data.status == 200 %}
+    <h1 style="font-family:jester; font-size:25px;"><h style="color:blue"><b>Confirmed</b></h>: {{data.Confirmed}}</h1>
+    <h1 style="font-family:jester; font-size:25px;"><h style="color:blue"><b>Deceased</b></h>: {{data.Deceased}} </h1>
+    <h1 style="font-family:jester; font-size:25px;"><h style="color:blue"><b>Recovered</b></h>: {{data.Recovered}} </h1>
+    <h1 style="font-family:jester; font-size:25px;"><h style="color:blue"><b>Tested</b></h>: {{data.Tested}} </h1>
+    <h1 style="font-family:jester; font-size:25px;"><h style="color:blue"><b>Vaccinated1</b></h>: {{data.Vaccinated1}} </h1>
+    <h1 style="font-family:jester; font-size:25px;"><h style="color:blue"><b>Vaccinated2</b></h>: {{data.Vaccinated2}} </h1>
+{% elif data.status == 404 %}
+<h1>State not found!!!</h1>
+{% elif data.status == 405 %}
+<h1>Please enter a state code</h1>
+{% elif data.status == 0 %}
+<h1 style="font-family:jester; font-size:25px;">Caching in progress...Try later</h1>
+{% endif %}
+</div>
+<a href="/"><input type="button" value="Home"></a>
+</body>
+</html>
