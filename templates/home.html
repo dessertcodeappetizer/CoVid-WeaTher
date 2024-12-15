@@ -2,8 +2,8 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Whether Forcast</title>
-        <!-- Latest compiled and minified CSS -->
+    <title>Applications</title>
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
     <!-- jQuery library -->
@@ -11,22 +11,82 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <meta charset="UTF-8">
-    <title>Apps</title>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            transition: background-image 2s ease-in-out; /* Fading only for background-image */
+        }
+
+        /* Translucent container for the 'Application' heading */
+        .heading-container {
+            background-color: rgba(0, 0, 0, 0.5); /* Translucent black */
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        a input {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .covid-btn {
+            background-color: green;
+            color: white;
+        }
+
+        .weather-btn {
+            background-color: red;
+            color: white;
+        }
+
+        /* Wrapper for content */
+        .content-wrapper {
+            z-index: 1; /* Ensure content stays above background */
+        }
+    </style>
+
+    <script>
+        let images = ['static/home1.jpg', 'static/home2.jpg', 'static/home3.jpg', 'static/home4.jpg', 'static/home5.jpg', 'static/home6.jpg']; // List of images
+        let currentImageIndex = 0;
+
+        function changeBackground() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            document.body.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+        }
+
+        setInterval(changeBackground, 5000); // Change background every 5 seconds
+    </script>
 </head>
-<style>
-    body {
-  background-image: url('static/apps.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
-</style>
+
 <body>
-<h1 align="center" style="color: white;"><b>Application</b></h1>
-<h1 align="center">
-<a href="/covid"><input type="button" value="Covid"></a>
-<a href="/weather"><input type="button" value="Weather"></a>
-</h1>
+    <div class="content-wrapper">
+        <div class="heading-container">
+            <h1><b>Applications</b></h1>
+        </div>
+        <h1>
+            <a href="/covid"><input type="button" value="Covid" class="covid-btn"></a>
+            <a href="/weather"><input type="button" value="Weather" class="weather-btn"></a>
+        </h1>
+    </div>
 </body>
 </html>
